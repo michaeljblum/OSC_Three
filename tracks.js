@@ -1,12 +1,28 @@
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 1000 );
+var camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 10000 );
 
 camera.position.z = 20
-camera.position.y = 5
+camera.position.y = 10
 camera.position.x = -5
 
 
-var light = new THREE.AmbientLight(0xffffff, 1);
+
+var skybox = new THREE.CubeGeometry( 5000, 5000, 5000)
+var skyMaterials = [
+    new THREE.MeshBasicMaterial( {map: new THREE.TextureLoader().load("assets/hw_sahara/sahara_ft.png"), side: THREE.DoubleSide }),
+    new THREE.MeshBasicMaterial( {map: new THREE.TextureLoader().load("assets/hw_sahara/sahara_bk.png"), side: THREE.DoubleSide }),
+    new THREE.MeshBasicMaterial( {map: new THREE.TextureLoader().load("assets/hw_sahara/sahara_up.png"), side: THREE.DoubleSide }),
+    new THREE.MeshBasicMaterial( {map: new THREE.TextureLoader().load("assets/hw_sahara/sahara_dn.png"), side: THREE.DoubleSide }),
+    new THREE.MeshBasicMaterial( {map: new THREE.TextureLoader().load("assets/hw_sahara/sahara_rt.png"), side: THREE.DoubleSide }),
+    new THREE.MeshBasicMaterial( {map: new THREE.TextureLoader().load("assets/hw_sahara/sahara_lf.png"), side: THREE.DoubleSide })
+];
+
+// var skyMaterial = new THREE.MeshBasicMaterial( skyMaterials )
+var sky = new THREE.Mesh( skybox, skyMaterials )
+scene.add( sky )
+
+
+var light = new THREE.AmbientLight(0xffffff, .8);
 scene.add(light);
 
 var renderer = new THREE.WebGLRenderer({antialias: true});
@@ -27,6 +43,7 @@ var loader = new THREE.GLTFLoader().setPath( 'models/track/' );
 
 loader.load( 'model.gltf', function ( gltf ) {
 scene.add( gltf.scene );
+// gltf.position = -4900
 } );
 
 var controls = new THREE.OrbitControls( camera, renderer.domElement )
