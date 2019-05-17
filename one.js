@@ -1,4 +1,4 @@
-var one = document.getElementById("one");
+var one = document.getElementById("box");
 var CANVAS_WIDTH = one.offsetWidth;
 var CANVAS_HEIGHT = one.offsetHeight;
 

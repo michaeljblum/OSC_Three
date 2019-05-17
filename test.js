@@ -26,7 +26,7 @@ function main() {
   
     function setupScene1() {
       const sceneInfo = makeScene(document.querySelector('#box'));
-      const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+      const geometry = new THREE.BoxBufferGeometry(.5, .5, .5);
       const material = new THREE.MeshPhongMaterial({color: 'aqua'});
       const mesh = new THREE.Mesh(geometry, material);
       sceneInfo.scene.add(mesh);
@@ -36,7 +36,7 @@ function main() {
   
     function setupScene2() {
       const sceneInfo = makeScene(document.querySelector('#pyramid'));
-      const radius = .8;
+      const radius = .5;
       const widthSegments = 100;
       const heightSegments = 100;
       const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
@@ -61,7 +61,7 @@ function main() {
 //           sceneInfo.mesh = mesh;
 //   } );
 
-      const radius = .7;
+      const radius = .5;
       const widthSegments = 20;
       const heightSegments = 1;
       const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
@@ -78,7 +78,7 @@ function main() {
 
     function setupScene4() {
         const sceneInfo = makeScene(document.querySelector('#boat'));
-        const radius = .5;
+        const radius = .4;
         const widthSegments = 100;
         const heightSegments = 100;
         const geometry = new THREE.BoxBufferGeometry(5.5,.5,.5);
