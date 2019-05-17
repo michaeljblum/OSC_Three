@@ -1,5 +1,5 @@
 body {
-    background-color: blueviolet;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(54,53,9,1) 26%, rgba(77,154,81,1) 59%, rgba(0,212,255,1) 100%);
 }
 
 #c {

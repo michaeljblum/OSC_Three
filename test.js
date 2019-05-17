@@ -26,8 +26,8 @@ function main() {
   
     function setupScene1() {
       const sceneInfo = makeScene(document.querySelector('#box'));
-      const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-      const material = new THREE.MeshPhongMaterial({color: 'aqua'});
+      const geometry = new THREE.BoxBufferGeometry(.25, 3, .25);
+      const material = new THREE.MeshPhongMaterial({color: 'orange'});
       const mesh = new THREE.Mesh(geometry, material);
       sceneInfo.scene.add(mesh);
       sceneInfo.mesh = mesh;
@@ -36,12 +36,12 @@ function main() {
   
     function setupScene2() {
       const sceneInfo = makeScene(document.querySelector('#pyramid'));
-      const radius = .8;
+      const radius = .6;
       const widthSegments = 100;
       const heightSegments = 100;
       const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
       const material = new THREE.MeshPhongMaterial({
-        color: 'pink',
+        color: 'purple',
         flatShading: true,
       });
       const mesh = new THREE.Mesh(geometry, material);
@@ -62,11 +62,11 @@ function main() {
 //   } );
 
       const radius = .7;
-      const widthSegments = 20;
+      const widthSegments = 50;
       const heightSegments = 1;
       const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
       const material = new THREE.MeshPhongMaterial({
-        color: 'purple',
+        color: 'yellow',
         flatShading: true,
       });
       const mesh = new THREE.Mesh(geometry, material);
@@ -144,10 +144,15 @@ function main() {
       renderer.clear(true, true);
       renderer.setScissorTest(true);
   
-      sceneInfo1.mesh.rotation.y = time * .1;
+      sceneInfo1.mesh.rotation.x = time * .4;
+      sceneInfo1.mesh.rotation.y = time * .4;
       sceneInfo2.mesh.rotation.y = time * .1;
-      sceneInfo3.mesh.rotation.y = time * .1;
+      sceneInfo2.mesh.rotation.z = time * .4;
+      sceneInfo2.mesh.rotation.x = time * .1;
+      sceneInfo3.mesh.rotation.y = time * .4;
+      sceneInfo3.mesh.rotation.x = time * .4;
       sceneInfo4.mesh.rotation.y = time * .4;
+      sceneInfo4.mesh.rotation.x = time * .4;
   
       rendenerSceneInfo(sceneInfo1);
       rendenerSceneInfo(sceneInfo2);
