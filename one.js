@@ -8,7 +8,7 @@ var camera = new THREE.PerspectiveCamera( 75, CANVAS_WIDTH / CANVAS_HEIGHT, 0.1,
 var light = new THREE.AmbientLight(0xffffff, 0.1);
 scene.add(light);
 var light1 = new THREE.PointLight(0xffffff, .9);
-light1.position.z = 5;
+light1.position.z = 50;
 scene.add(light1);
 
 var renderer = new THREE.WebGLRenderer({antialias: true});
@@ -18,7 +18,7 @@ one.appendChild(renderer.domElement)
 
 
 
-var geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+var geometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
 var material = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
 var cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
