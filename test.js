@@ -53,13 +53,12 @@ function main() {
     function setupScene3() {
       const sceneInfo = makeScene(document.querySelector('#obelisk'));
 
-//       let loader = new THREE.GLTFLoader().setPath( 'models/track/' );
+var loader = new THREE.GLTFLoader().setPath( 'models/head/' );
 
-//       loader.load( 'model.gltf', function ( gltf ) {
-//           const mesh = new THREE.Mesh( gltf.scene )
-//           sceneInfo.scene.add(mesh)
-//           sceneInfo.mesh = mesh;
-//   } );
+loader.load( 'scene.gltf', function ( gltf ) {
+scene.add( gltf.scene );
+// gltf.position = -4900
+} );
 
       const radius = .7;
       const widthSegments = 50;
@@ -78,7 +77,7 @@ function main() {
 
     function setupScene4() {
         const sceneInfo = makeScene(document.querySelector('#boat'));
-        const radius = .5;
+        const radius = .4;
         const widthSegments = 100;
         const heightSegments = 100;
         const geometry = new THREE.BoxBufferGeometry(5.5,.5,.5);
@@ -166,3 +165,71 @@ function main() {
   }
   
   main();
+
+//   var one = document.getElementById("mask");
+// var CANVAS_WIDTH = one.offsetWidth;
+// var CANVAS_HEIGHT = one.offsetHeight;
+
+// var scene = new THREE.Scene();
+// var camera = new THREE.PerspectiveCamera( 75, CANVAS_WIDTH / CANVAS_HEIGHT, 0.1, 1000 );
+
+// var light = new THREE.AmbientLight(0xffffff, 0.1);
+// scene.add(light);
+// var light1 = new THREE.PointLight(0xffffff, .9);
+// light1.position.z = 50;
+// scene.add(light1);
+
+// var renderer = new THREE.WebGLRenderer({antialias: true});
+// renderer.setSize( CANVAS_WIDTH, CANVAS_HEIGHT );
+// renderer.setPixelRatio(window.devicePixelRatio);
+// one.appendChild(renderer.domElement)
+
+
+
+// var geometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
+// var material = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
+// var cube = new THREE.Mesh( geometry, material );
+// scene.add( cube );
+
+// // var cube2 = new THREE.Mesh( geometry, material)
+
+// // scene.add(cube2)
+// // cube2.position.x = 3
+
+// camera.position.z = 500;
+
+// const domEvents = new THREEx.DomEvents( camera, renderer.domElement)
+// domEvents.addEventListener( cube, 'mouseover', e => material.wireframe = true )
+// domEvents.addEventListener( cube, 'mouseout', e => material.wireframe = false )
+
+// var controls = new THREE.OrbitControls( camera, renderer.domElement )
+// controls.minDistance = 1
+// controls.maxDistance = 1000
+
+// var loader = new THREE.GLTFLoader().setPath( 'models/head/' );
+
+// loader.load( 'scene.gltf', function ( gltf ) {
+// scene.add( gltf.scene );
+// // gltf.position = -4900
+// } );
+
+// // var delta = 0;
+// function animate() {
+//     // delta += 0.01;
+// 	requestAnimationFrame( animate );
+//     renderer.render( scene, camera );
+//     cube.rotation.x += 0.01;
+//     cube.rotation.y += 0.01;
+//     cube.rotation.z += 0.01;
+
+//     controls.update()
+
+
+//     //the below code makes the camera swivel on all three axes while focusing on the position of a stationary object, in this case that of the cube in order to get the right effect, maybe sure to uncomment the two lines above pertaining to the delta, as well as change camera.position.z to camera.position.x
+//     // camera.lookAt(cube.position);
+//     // camera.position.x = Math.sin(delta) * 5;
+//     // camera.position.z = Math.cos(delta) * 5;
+//     // camera.position.y = Math.cos(delta) * 5;
+
+// }
+// animate();
