@@ -1,6 +1,7 @@
 function main() {
     const canvas = document.querySelector('#c');
     const renderer = new THREE.WebGLRenderer({canvas, alpha: true, antialias: true});
+    
   
     function makeScene(elem) {
       const scene = new THREE.Scene();
@@ -8,11 +9,15 @@ function main() {
       const fov = 45;
       const aspect = 2;  // the canvas default
       const near = 0.1;
-      const far = 5;
+      const far = 1000;
       const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
       camera.position.set(0, 1, 2);
       camera.lookAt(0, 0, 0);
-  
+      
+      var controls = new THREE.OrbitControls( camera, renderer.domElement )
+      controls.minDistance = 1
+      controls.maxDistance = 1000
+        
       {
         const color = 0xFFFFFF;
         const intensity = 1;
@@ -20,9 +25,13 @@ function main() {
         light.position.set(-1, 2, 4);
         scene.add(light);
       }
-  
-      return {scene, camera, elem};
+
+      return {scene, camera, elem, controls};
     }
+
+    // function loadModels() {
+
+    // }
   
     function setupScene1() {
       const sceneInfo = makeScene(document.querySelector('#box'));
@@ -53,24 +62,25 @@ function main() {
     function setupScene3() {
       const sceneInfo = makeScene(document.querySelector('#obelisk'));
 
-var loader = new THREE.GLTFLoader().setPath( 'models/head/' );
+      var loader = new THREE.GLTFLoader().setPath( 'models/head/' );
 
 loader.load( 'scene.gltf', function ( gltf ) {
-scene.add( gltf.scene );
+sceneInfo.scene.add( gltf.scene );
 // gltf.position = -4900
 } );
 
-      const radius = .7;
-      const widthSegments = 50;
-      const heightSegments = 1;
-      const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
-      const material = new THREE.MeshPhongMaterial({
-        color: 'yellow',
-        flatShading: true,
-      });
-      const mesh = new THREE.Mesh(geometry, material);
-      sceneInfo.scene.add(mesh);
-      sceneInfo.mesh = mesh;
+
+      // const radius = .7;
+      // const widthSegments = 50;
+      // const heightSegments = 1;
+      // const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+      // const material = new THREE.MeshPhongMaterial({
+      //   color: 'yellow',
+      //   flatShading: true,
+      // });
+      // const mesh = new THREE.Mesh(geometry, material);
+      // sceneInfo.scene.add(mesh);
+      // sceneInfo.mesh = mesh;
 
       return sceneInfo;
     }
@@ -126,6 +136,8 @@ scene.add( gltf.scene );
   
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
+
+      
   
       const positiveYUpBottom = renderer.domElement.clientHeight - bottom;
       renderer.setScissor(left, positiveYUpBottom, width, height);
@@ -135,6 +147,7 @@ scene.add( gltf.scene );
     }
   
     function render(time) {
+      controls.update()
       time *= 0.001;
   
       resizeRendererToDisplaySize(renderer);
@@ -143,13 +156,14 @@ scene.add( gltf.scene );
       renderer.clear(true, true);
       renderer.setScissorTest(true);
   
+      
       sceneInfo1.mesh.rotation.x = time * .4;
       sceneInfo1.mesh.rotation.y = time * .4;
       sceneInfo2.mesh.rotation.y = time * .1;
       sceneInfo2.mesh.rotation.z = time * .4;
       sceneInfo2.mesh.rotation.x = time * .1;
-      sceneInfo3.mesh.rotation.y = time * .4;
-      sceneInfo3.mesh.rotation.x = time * .4;
+      // sceneInfo3.mesh.rotation.y = time * .4;
+      // sceneInfo3.mesh.rotation.x = time * .4;
       sceneInfo4.mesh.rotation.y = time * .4;
       sceneInfo4.mesh.rotation.x = time * .4;
   
@@ -162,6 +176,7 @@ scene.add( gltf.scene );
     }
   
     requestAnimationFrame(render);
+    
   }
   
   main();

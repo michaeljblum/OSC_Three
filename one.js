@@ -1,8 +1,11 @@
 var one = document.getElementById("box");
+one.addEventListener('mousemove', onMouseMove, false)
+
 var CANVAS_WIDTH = one.offsetWidth;
 var CANVAS_HEIGHT = one.offsetHeight;
 
 var scene = new THREE.Scene();
+
 var camera = new THREE.PerspectiveCamera( 75, CANVAS_WIDTH / CANVAS_HEIGHT, 0.1, 1000 );
 
 var light = new THREE.AmbientLight(0xffffff, 0.1);
@@ -65,3 +68,10 @@ function animate() {
 
 }
 animate();
+function onMouseMove(event) {
+    mouseX = event.clientX - window.innerWidth / 2;
+    mouseY = event.clientY - window.innerHeight / 2;
+    camera.position.x += (mouseX - camera.position.x) * 0.005;
+    camera.position.y += (mouseY - camera.position.y) * 0.005;
+    camera.lookAt(scene.position)
+}

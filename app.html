@@ -9,20 +9,29 @@
 </head>
 <body>
     <canvas id="c"></canvas>
+    <div>
+
+    </div>
     <div class="grid">
+        <div class="span-col-3"
+        id="but"
+        class="box"
+        
+        ></div>
+        
         <div></div>
         <div></div>
         <div></div>
         <div></div>
         <div></div>
-        <div class="span-row-2" id="box" class="box"></div>
+        <div class="span-row-2" id="box" class="box" data-diagram="box"></div>
         <!-- <div class="span-row-2" id="one"></div> -->
         <div></div>
         <div></div>
         <div></div>
         <div></div>
         <div></div>
-        <div class="span-row-2" id="pyramid" class="box"></div>
+        <div class="span-row-2" id="pyramid" class="box" data-diagram="pyramid"></div>
         <!-- <div class="span-row-2" id="two"></div> -->
         <div></div>
         <div></div>
@@ -35,7 +44,7 @@
         <div></div>
         <div></div>
         <div></div>
-        <div class="span-row-2" class="box" id="mask"></div>
+        <div class="span-row-2" class="box" id="mask" data-diagram="mask"></div>
         <div></div>
         <div></div>
         <div class="span-row-2" class="box" id="obelisk"></div>
@@ -60,8 +69,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
     <script src="js/OrbitControls.js"></script>
+    <script src="TrackballControls.js"></script>
     <script src="js/threex.domevents.js"></script>
     <script src="js/GLTFLoader.js"></script>
-    <script src="test.js"></script>
+    <script src="museum.js"></script>
 </body>
 </html>
