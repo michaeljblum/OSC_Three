@@ -21,21 +21,27 @@ window.addEventListener( 'resize', function(){
     camera.updateProjectionMatrix();
 })
 
-var geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
-var material = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
-var cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+// var geometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
+// var material = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
+// var cube = new THREE.Mesh( geometry, material );
+// scene.add( cube );
 
-var cube2 = new THREE.Mesh( geometry, material)
+// var cube2 = new THREE.Mesh( geometry, material)
 
-scene.add(cube2)
-cube2.position.x = 3
+// scene.add(cube2)
+// cube2.position.x = 3
 
-camera.position.z = 5;
+var loader = new THREE.GLTFLoader().setPath( 'models/paralang/' );
 
-const domEvents = new THREEx.DomEvents( camera, renderer.domElement)
-domEvents.addEventListener( cube, 'mouseover', e => material.wireframe = true )
-domEvents.addEventListener( cube, 'mouseout', e => material.wireframe = false )
+loader.load( 'ProjectName.gltf', function ( gltf ) {
+scene.add( gltf.scene );
+} );
+
+camera.position.z = 30;
+
+// const domEvents = new THREEx.DomEvents( camera, renderer.domElement)
+// domEvents.addEventListener( cube, 'mouseover', e => material.wireframe = true )
+// domEvents.addEventListener( cube, 'mouseout', e => material.wireframe = false )
 
 var controls = new THREE.OrbitControls( camera, renderer.domElement )
 controls.minDistance = 1
@@ -46,9 +52,9 @@ function animate() {
     // delta += 0.01;
 	requestAnimationFrame( animate );
     renderer.render( scene, camera );
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    cube.rotation.z += 0.01;
+    // cube.rotation.x += 0.01;
+    // cube.rotation.y += 0.01;
+    // cube.rotation.z += 0.01;
 
     controls.update()
 
