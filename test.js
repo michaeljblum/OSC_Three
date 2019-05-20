@@ -62,25 +62,25 @@ function main() {
     function setupScene3() {
       const sceneInfo = makeScene(document.querySelector('#obelisk'));
 
-      var loader = new THREE.GLTFLoader().setPath( 'models/head/' );
+//       var loader = new THREE.GLTFLoader().setPath( 'models/head/' );
 
-loader.load( 'scene.gltf', function ( gltf ) {
-sceneInfo.scene.add( gltf.scene );
-// gltf.position = -4900
-} );
+// loader.load( 'scene.gltf', function ( gltf ) {
+// sceneInfo.scene.add( gltf.scene );
+// // gltf.position = -4900
+// } );
 
 
-      // const radius = .7;
-      // const widthSegments = 50;
-      // const heightSegments = 1;
-      // const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
-      // const material = new THREE.MeshPhongMaterial({
-      //   color: 'yellow',
-      //   flatShading: true,
-      // });
-      // const mesh = new THREE.Mesh(geometry, material);
-      // sceneInfo.scene.add(mesh);
-      // sceneInfo.mesh = mesh;
+      const radius = .7;
+      const widthSegments = 50;
+      const heightSegments = 1;
+      const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+      const material = new THREE.MeshPhongMaterial({
+        color: 'yellow',
+        flatShading: true,
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      sceneInfo.scene.add(mesh);
+      sceneInfo.mesh = mesh;
 
       return sceneInfo;
     }
@@ -147,7 +147,7 @@ sceneInfo.scene.add( gltf.scene );
     }
   
     function render(time) {
-      controls.update()
+      // controls.update()
       time *= 0.001;
   
       resizeRendererToDisplaySize(renderer);
@@ -162,8 +162,8 @@ sceneInfo.scene.add( gltf.scene );
       sceneInfo2.mesh.rotation.y = time * .1;
       sceneInfo2.mesh.rotation.z = time * .4;
       sceneInfo2.mesh.rotation.x = time * .1;
-      // sceneInfo3.mesh.rotation.y = time * .4;
-      // sceneInfo3.mesh.rotation.x = time * .4;
+      sceneInfo3.mesh.rotation.y = time * .4;
+      sceneInfo3.mesh.rotation.x = time * .4;
       sceneInfo4.mesh.rotation.y = time * .4;
       sceneInfo4.mesh.rotation.x = time * .4;
   
