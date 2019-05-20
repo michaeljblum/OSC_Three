@@ -113,6 +113,64 @@ function main() {
         renderer.render(scene, camera);
       };
     },
+    'obelisk': (elem) => {
+      const {scene, camera, controls} = makeScene(elem);
+    //   const radius = .8;
+    //   const widthSegments = 4;
+    //   const heightSegments = 2;
+    //   const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    //   const material = new THREE.MeshPhongMaterial({
+    //     color: 'blue',
+    //     flatShading: true,
+    //   });
+    //   const mesh = new THREE.Mesh(geometry, material);
+    //   scene.add(mesh);
+    var loader = new THREE.GLTFLoader().setPath( 'models/mask-2/' );
+
+    loader.load( 'scene.gltf', function ( gltf ) {
+    scene.add( gltf.scene );
+    
+    } );
+    camera.position.z = 500;
+
+      return (time, rect) => {
+        // mesh.rotation.y = time * .1;
+        camera.aspect = rect.width / rect.height;
+        camera.updateProjectionMatrix();
+        controls.handleResize();
+        controls.update();
+        renderer.render(scene, camera);
+      };
+    },
+    'boat': (elem) => {
+      const {scene, camera, controls} = makeScene(elem);
+    //   const radius = .8;
+    //   const widthSegments = 4;
+    //   const heightSegments = 2;
+    //   const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    //   const material = new THREE.MeshPhongMaterial({
+    //     color: 'blue',
+    //     flatShading: true,
+    //   });
+    //   const mesh = new THREE.Mesh(geometry, material);
+    //   scene.add(mesh);
+    var loader = new THREE.GLTFLoader().setPath( 'models/sculpture/' );
+
+    loader.load( 'scene.gltf', function ( gltf ) {
+    scene.add( gltf.scene );
+    // gltf.position.z = 500
+    } );
+    camera.position.z = 150;
+
+      return (time, rect) => {
+        // mesh.rotation.y = time * .1;
+        camera.aspect = rect.width / rect.height;
+        camera.updateProjectionMatrix();
+        controls.handleResize();
+        controls.update();
+        renderer.render(scene, camera);
+      };
+    },
   };
   document.querySelectorAll('[data-diagram]').forEach((elem) => {
     const sceneName = elem.dataset.diagram;
